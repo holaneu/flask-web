@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MILOUS BUS</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">MILOUS BUS</div>
+      <nav class="nav" id="navMenu">
+        <a href="#o-nas">O nás</a>
+        <a href="#fotogalerie">Fotogalerie</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2>Vnitrostátní a mezinárodní autobusová přeprava</h2>
+      <p>Nový autobus značky <strong>Scania</strong> disponuje kapacitou až <strong>59 míst k sezení</strong>...</p>
+    </div>
+  </section>
+
+  <section class="bus-info">
+    <div class="container flex">
+      <img src="bus.jpg" alt="Scania Irizar i6" class="bus-image">
+      <div class="bus-details">
+        <h3>Scania Irizar i6</h3>
+        <ul>
+          <li>WC</li>
+          <li>Klimatizace</li>
+          <li>Video přehrávač</li>
+          <li>Minibar s lednicí</li>
+          <li>Možnost zakoupení chlazených nápojů</li>
+          <li>Bezpečnostní pásy</li>
+        </ul>       
+      </div>
+      <button class="btn">Zobrazit fotogalerii →</button>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="container">
+      <h3>V případě zájmu o zajištění přepravy nás kontaktujte</h3>
+      <p><strong>+420 606 067 033</strong><br>milousbus@seznam.cz</p>
+      <p><strong>For English:</strong><br>+420 774 903 334</p>
+      <button class="btn">Zobrazit kontakty →</button>
+    </div>
+  </section>
+
+  <script>
+    // script.js
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+  </script>
+
+  <style>
+    /* styles.css */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: #f8f6f3;
+      padding: 1rem 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: #333;
+    }
+
+    .hero, .contact {
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .bus-info {
+      padding: 2rem 0;
+    }
+
+    .flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .bus-image {
+      flex: 1 1 40%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .bus-details {
+      flex: 1 1 50%;
+    }
+
+    .bus-details ul {
+      list-style-type: disc;
+      padding-left: 1.2rem;
+    }
+
+    .btn {
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background: #88754f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+        flex-direction: column;
+        background: #f8f6f3;
+        position: absolute;
+        top: 70px;
+        right: 10px;
+        border: 1px solid #ccc;
+        padding: 1rem;
+        z-index: 999;
+      }
+
+      .nav.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+  </style>
+</body>
+</html>

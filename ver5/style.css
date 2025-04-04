@@ -1,0 +1,236 @@
+/* Basic Reset & Body */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+  /* Removed body padding-top */
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  background-color: transparent;
+  padding: 0 1rem; /* Use padding for horizontal spacing, not height */
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  border-bottom: 1px solid transparent;
+  height: 70px; /* Fixed height */
+  display: flex; /* Use flex to vertically center content within fixed height */
+  align-items: center;
+}
+
+.header .container { /* Ensure container takes full height */
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Ensure container uses full header width */
+}
+
+.header.scrolled {
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  flex-shrink: 0; /* Prevent logo from shrinking */
+}
+
+/* --- Header Content Colors & Visibility --- */
+
+/* Default state (scrolled or light hero) */
+.header .logo,
+.header .nav-main a {
+  color: #333;
+}
+.header .hamburger span {
+  background-color: #333; /* Dark hamburger lines */
+}
+
+/* State when header is transparent (NOT scrolled) */
+.header:not(.scrolled) .logo,
+.header:not(.scrolled) .nav-main a {
+  color: #fff; /* Light text */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* Shadow for visibility */
+}
+/* Hamburger when transparent - ensure visibility */
+.header:not(.scrolled) .hamburger span {
+  background-color: #fff; /* Light hamburger lines */
+   /* Optional: Add a subtle border/shadow for extra contrast if needed */
+   /* border: 1px solid rgba(0, 0, 0, 0.2); */
+   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+
+.nav-main {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto; /* Push nav to the right, before hamburger */
+  margin-right: 1.5rem; /* Space between nav and hamburger */
+}
+
+.nav-main a {
+  text-decoration: none;
+  white-space: nowrap; /* Prevent nav links wrapping */
+}
+
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 4px; z-index: 1002; position: relative; padding: 5px; /* Add padding for easier clicking */}
+.hamburger span { height: 3px; width: 25px; transition: all 0.3s ease; border-radius: 1px; /* Slightly rounded edges */ }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+
+/* --- Hero Overlap Logic --- */
+/* Default: Element after header gets margin-top */
+.header + * {
+  margin-top: 70px; /* Match header height */
+}
+/* Exception: If hero overlaps, remove its top margin */
+.hero-section.hero-overlaps-header {
+  margin-top: 0;
+}
+
+
+/* Sidebar */
+.sidebar { position: fixed; top: 0; right: -300px; width: 280px; height: 100%; background: #fff; padding: 1.5rem; padding-top: 4rem; box-shadow: -2px 0 5px rgba(0,0,0,0.1); transition: right 0.4s ease-in-out; z-index: 1001; overflow-y: auto; }
+.sidebar.active { right: 0; }
+.sidebar-close { position: absolute; top: 10px; left: 15px; background: none; border: none; font-size: 2.5rem; line-height: 1; font-weight: bold; color: #888; cursor: pointer; padding: 0 5px; }
+.sidebar-close:hover { color: #333; }
+.nav-sidebar { display: flex; flex-direction: column; gap: 1rem; }
+.nav-sidebar a { text-decoration: none; color: #333; font-size: 1.1rem; padding: 0.5rem 0; border-bottom: 1px solid #eee; }
+
+/* Overlay */
+.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); opacity: 0; visibility: hidden; transition: opacity 0.4s ease-in-out, visibility 0s linear 0.4s; z-index: 1000; }
+.overlay.active { opacity: 1; visibility: visible; transition: opacity 0.4s ease-in-out; }
+
+/* Hero Section */
+.hero-section {
+  min-height: 300px;
+  padding: 4rem 0;
+  background-color: #b2dfdb; /* Mint example background */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  color: #333;
+  text-align: center;
+  /* margin-top is handled by the general rule above */
+}
+.hero-section .container {
+   max-width: 800px;
+}
+
+/* Main Content Area */
+.main-content {
+  /* No special styling needed */
+}
+
+/* Row Concept */
+.row {
+  width: 100%;
+  padding: 3rem 0;
+}
+.row .container {
+  text-align: center;
+}
+.row-bg-lightgray { background-color: #f8f8f8; }
+.row-bg-dark { background-color: #333; color: #fff; }
+.row-bg-dark h2, .row-bg-dark h3, .row-bg-dark p { color: #fff; }
+.row-bg-dark .card { background-color: #444; border-color: #555; color: #eee; }
+
+
+/* Card System */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  justify-content: center; /* Center cards if row is not full */
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  flex-grow: 1;
+  /* --- NEW: Added Max Width --- */
+  max-width: 520px; /* Prevent cards from becoming too wide */
+  /* Width/basis is still controlled by cols-* classes */
+  text-align: left; 
+}
+
+/* Column Width Calculations (using flex-basis) */
+/* 1 Column */
+.card-container.cols-1 .card { flex-basis: 100%; /* Will respect max-width */ }
+/* 2 Columns */
+.card-container.cols-2 .card { flex-basis: calc(50% - (1.5rem / 2)); }
+/* 3 Columns */
+.card-container.cols-3 .card { flex-basis: calc(33.333% - (1.5rem * 2 / 3)); }
+/* 4 Columns */
+.card-container.cols-4 .card { flex-basis: calc(25% - (1.5rem * 3 / 4)); }
+
+/* Ensure cards don't exceed max-width even with flex-basis */
+/* (max-width property on .card already handles this) */
+
+/* Button style */
+.btn { display: inline-block; margin-top: 1rem; padding: 0.6rem 1.2rem; background: #88754f; color: white; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; }
+.btn:hover { background: #7a6843; }
+
+/* Footer */
+.footer { background: #333; color: #fff; text-align: center; padding: 1.5rem 0; }
+
+/* --- Responsive Design --- */
+
+/* Tablet and smaller */
+@media (max-width: 992px) {
+  /* Stack 3 and 4 column layouts into 2 columns */
+  .card-container.cols-3 .card,
+  .card-container.cols-4 .card {
+      flex-basis: calc(50% - (1.5rem / 2));
+      max-width: 520px; /* Max-width still applies */
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .header { height: 60px; } /* Adjust header height */
+  /* Adjust margin-top for element after header */
+  .header + * { margin-top: 0; }
+  .hero-section.hero-overlaps-header { margin-top: 0; } /* Overlap still removes margin */
+
+  .nav-main { display: none; }
+  .hamburger { display: flex; } /* Show hamburger */
+  .hero-section { min-height: 200px; padding: 3rem 0; }
+  .row { padding: 2rem 0; }
+
+  /* Stack all cards vertically */
+  .card-container.cols-2 .card,
+  .card-container.cols-3 .card,
+  .card-container.cols-4 .card {
+      flex-basis: 100%; /* Full width on mobile */
+      max-width: 100%; /* Allow card to take full container width */
+  }
+}
