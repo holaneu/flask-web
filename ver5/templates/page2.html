@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Page 2{% endblock %}
+
+{% block head %}
+    <title>Page 2</title>
+{% endblock %}
+
+{% block content %}
+<section class="hero-section ">
+  <div class="container">
+      <h1>Hero Title</h1>
+      <p>Hero subtitle or description (for page 2).</p>
+  </div>
+</section>
+
+<main class="main-content">
+
+  <div class="row row-bg-lightgray">
+      <div class="container">
+          <h2>Row with 3 Cards</h2>
+          <p>These cards will stack on smaller screens.</p>
+
+          <div class="card-container cols-3">
+              <div class="card">
+                  <h3>Card 1</h3>
+                  <p>Content for the first card. It takes up roughly one-third of the width on larger screens.</p>
+              </div>
+              <div class="card">
+                  <h3>Card 2</h3>
+                  <p>Content for the second card.</p>
+              </div>
+              <div class="card">
+                  <h3>Card 3</h3>
+                  <p>Content for the third card.</p>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="container">
+           <h2>Row with 2 Cards</h2>
+           <div class="card-container cols-2">
+              <div class="card">
+                  <h3>Card A</h3>
+                  <img src="placeholder.jpg" alt="Placeholder" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
+                  <p>Content for card A. Takes up half width on large screens.</p>
+                   <button class="btn">Read More</button>
+              </div>
+              <div class="card">
+                  <h3>Card B</h3>
+                  <p>Content for card B. Includes more text to show how cards handle varying heights.</p>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatem.</p>
+                   <button class="btn">Learn More</button>
+              </div>
+          </div>
+          <button class="btn">Learn More</button>
+      </div>
+  </div>
+
+   <div class="row row-bg-dark">
+      <div class="container">
+           <h2>Row with 4 Cards (Dark Background)</h2>
+           <div class="card-container cols-4">
+              <div class="card">Card 1</div>
+              <div class="card">Card 2</div>
+              <div class="card">Card 3</div>
+              <div class="card">Card 4</div>
+          </div>
+      </div>
+  </div>
+
+   <div class="row" id="section-bottom">
+      <div class="container">
+           <h2>Row with 1 Card (Full Width)</h2>
+           <div class="card-container cols-1">
+              <div class="card">
+                  <h3>Full Width Card</h3>
+                  <p>This card uses the full width available within the container.</p>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</main>
+{% endblock %}

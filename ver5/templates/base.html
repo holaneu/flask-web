@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">  
+  {% block head %}{% endblock %}
+</head>
+
+<body>  
+  
+  <header class="header" id="header">
+    <div class="container header-content">
+        <div class="logo">Your Logo</div>
+        <nav class="nav-main">
+          {% include 'partials/nav_main.html' %}
+        </nav>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+  </header>
+
+  <aside class="sidebar" id="sidebar">
+      <button class="sidebar-close" id="sidebarClose">&times;</button>
+      <nav class="nav-sidebar">
+        {% include 'partials/nav_main.html' %}
+      </nav>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  {% block content %}{% endblock %} 
+
+  <footer class="footer">
+    <div class="container">
+        <p>&copy; 2025 Your Website</p>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
